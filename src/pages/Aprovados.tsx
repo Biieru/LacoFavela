@@ -3,7 +3,6 @@ import { Download, CheckCircle2, XCircle, Clock, Search } from 'lucide-react'
 import { useApp } from '../context/AppContext'
 import { useToast } from '../context/ToastContext'
 import { exportToCsv } from '../utils/exportCsv'
-import { exportToPdf } from '../utils/exportPdf'
 import type { Aprovado } from '../types'
 import Button from '../components/ui/Button'
 import ExportMenu from '../components/ui/ExportMenu'
@@ -69,8 +68,9 @@ export default function Aprovados() {
     toast.success('Exportado!', `${filtered.length} registro(s) no arquivo CSV.`)
   }
 
-  const handleExportarPdf = () => {
-    exportToPdf({
+  const handleExportarPdf = async () => {
+    const { exportToPdf } = await import('../utils/exportPdfLoader')
+    await exportToPdf({
       title:    'Famílias Aprovadas',
       subtitle: `Ciclo 3 · ${filtered.length} registro(s) · Laço Favela`,
       filename: 'aprovados',

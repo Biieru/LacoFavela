@@ -3,7 +3,6 @@ import { MapPin, Users, Plus, Search } from 'lucide-react'
 import { PRESIDENTE_FAMILIAS } from '../../data/mockData'
 import { useToast } from '../../context/ToastContext'
 import { exportToCsv } from '../../utils/exportCsv'
-import { exportToPdf } from '../../utils/exportPdf'
 import Badge from '../../components/ui/Badge'
 import Button from '../../components/ui/Button'
 import Modal from '../../components/ui/Modal'
@@ -86,8 +85,9 @@ export default function PresidenteFamilias() {
     toast.success('Exportado!', `${filtered.length} família(s) exportadas.`)
   }
 
-  const handleExportarPdf = () => {
-    exportToPdf({
+  const handleExportarPdf = async () => {
+    const { exportToPdf } = await import('../../utils/exportPdfLoader')
+    await exportToPdf({
       title:    'Minhas Famílias',
       subtitle: `${filtered.length} família(s) cadastrada(s) · Laço Favela`,
       filename: 'minhas_familias',

@@ -3,7 +3,6 @@ import { Download, Database, Calendar, CheckCircle2, FileText, Zap } from 'lucid
 import { useApp } from '../context/AppContext'
 import { useToast } from '../context/ToastContext'
 import { exportToCsv } from '../utils/exportCsv'
-import { exportToPdf } from '../utils/exportPdf'
 import { MOCK_CICLO_STATS } from '../data/mockData'
 import type { HistoricoEvento } from '../types'
 import Button from '../components/ui/Button'
@@ -56,8 +55,9 @@ export default function Historico() {
     exportToCsv('historico', historicoRows())
     toast.success('Histórico exportado!', `${historico.length} evento(s) no arquivo CSV.`)
   }
-  const handleExportarHistoricoPdf = () => {
-    exportToPdf({
+  const handleExportarHistoricoPdf = async () => {
+    const { exportToPdf } = await import('../utils/exportPdfLoader')
+    await exportToPdf({
       title:    'Histórico de Eventos',
       subtitle: `${historico.length} evento(s) · Laço Favela`,
       filename: 'historico',
@@ -76,8 +76,9 @@ export default function Historico() {
     exportToCsv('todos_os_ciclos', cicloRows())
     toast.success('Dados exportados!', 'Arquivo com todos os ciclos gerado.')
   }
-  const handleExportarTodosDadosPdf = () => {
-    exportToPdf({
+  const handleExportarTodosDadosPdf = async () => {
+    const { exportToPdf } = await import('../utils/exportPdfLoader')
+    await exportToPdf({
       title:    'Resumo por Ciclo',
       subtitle: `${cicloStats.length} ciclo(s) · Laço Favela`,
       filename: 'ciclos_resumo',

@@ -1,39 +1,40 @@
+import { lazy, Suspense } from 'react'
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
 import { AuthProvider, useAuth } from './context/AuthContext'
 import { AppProvider } from './context/AppContext'
 import { ToastProvider } from './context/ToastContext'
 import AppLayout from './components/layout/AppLayout'
 import Login from './pages/Login'
-
-// Admin pages
-import Dashboard   from './pages/Dashboard'
-import Formularios from './pages/Formularios'
-import Presidentes from './pages/Presidentes'
-import Familias    from './pages/Familias'
-import Aprovados   from './pages/Aprovados'
-import Feedbacks   from './pages/Feedbacks'
-import Historico   from './pages/Historico'
-
-// Presidente pages
-import PresidenteHome       from './pages/presidente/Home'
-import PresidenteFamilias   from './pages/presidente/Familias'
-import PresidenteFormularios from './pages/presidente/Formularios'
-import Registros            from './pages/presidente/Registros'
-import MeuIndicador         from './pages/presidente/MeuIndicador'
-import RankingPresidente    from './pages/presidente/RankingPresidente'
-
-// Morador pages
-import MoradorInicio        from './pages/morador/Inicio'
-import MoradorNotificacoes  from './pages/morador/Notificacoes'
-import Acompanhamento       from './pages/morador/Acompanhamento'
-import RankingMorador       from './pages/morador/Ranking'
-import SerPresidente        from './pages/morador/SerPresidente'
-import FeedbackMorador      from './pages/morador/FeedbackMorador'
-
-// Shared
-import Perfil from './pages/Perfil'
-
 import type { UserRole } from './types'
+
+const Dashboard             = lazy(() => import('./pages/Dashboard'))
+const Formularios           = lazy(() => import('./pages/Formularios'))
+const Presidentes           = lazy(() => import('./pages/Presidentes'))
+const Familias              = lazy(() => import('./pages/Familias'))
+const Aprovados             = lazy(() => import('./pages/Aprovados'))
+const Feedbacks             = lazy(() => import('./pages/Feedbacks'))
+const Historico             = lazy(() => import('./pages/Historico'))
+const PresidenteHome        = lazy(() => import('./pages/presidente/Home'))
+const PresidenteFamilias    = lazy(() => import('./pages/presidente/Familias'))
+const PresidenteFormularios = lazy(() => import('./pages/presidente/Formularios'))
+const Registros             = lazy(() => import('./pages/presidente/Registros'))
+const MeuIndicador          = lazy(() => import('./pages/presidente/MeuIndicador'))
+const RankingPresidente     = lazy(() => import('./pages/presidente/RankingPresidente'))
+const MoradorInicio         = lazy(() => import('./pages/morador/Inicio'))
+const MoradorNotificacoes   = lazy(() => import('./pages/morador/Notificacoes'))
+const Acompanhamento        = lazy(() => import('./pages/morador/Acompanhamento'))
+const RankingMorador        = lazy(() => import('./pages/morador/Ranking'))
+const SerPresidente         = lazy(() => import('./pages/morador/SerPresidente'))
+const FeedbackMorador       = lazy(() => import('./pages/morador/FeedbackMorador'))
+const Perfil                = lazy(() => import('./pages/Perfil'))
+
+function PageLoader() {
+  return (
+    <div className="flex items-center justify-center min-h-[40vh] text-navy font-medium">
+      Carregando…
+    </div>
+  )
+}
 
 function ProtectedRoute({ children, roles }: { children: React.ReactNode; roles?: UserRole[] }) {
   const { user, isAuthenticated } = useAuth()
@@ -68,11 +69,20 @@ function FormulariosPage() {
 function AppRoutes() {
   const { isAuthenticated } = useAuth()
 
+  if (!isAuthenticated) {
+    return (
+      <Routes>
+        <Route path="/login" element={<Login />} />
+        <Route path="*" element={<Navigate to="/login" replace />} />
+      </Routes>
+    )
+  }
+
   return (
     <Routes>
-      <Route path="/login" element={isAuthenticated ? <Navigate to="/" replace /> : <Login />} />
+      <Route path="/login" element={<Navigate to="/" replace />} />
 
-      <Route path="/" element={<ProtectedRoute><AppLayout /></ProtectedRoute>}>
+      <Route path="/" element={<AppLayout />}>
         {/* Home — dinâmico por role */}
         <Route index element={<HomeByRole />} />
 
@@ -147,7 +157,9 @@ export default function App() {
       <AuthProvider>
         <AppProvider>
           <ToastProvider>
-            <AppRoutes />
+            <Suspense fallback={<PageLoader />}>
+              <AppRoutes />
+            </Suspense>
           </ToastProvider>
         </AppProvider>
       </AuthProvider>

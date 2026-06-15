@@ -3,7 +3,6 @@ import { Download, Plus, Search, Edit2, Eye, AlertTriangle, Trash2 } from 'lucid
 import { useApp } from '../context/AppContext'
 import { useToast } from '../context/ToastContext'
 import { exportToCsv } from '../utils/exportCsv'
-import { exportToPdf } from '../utils/exportPdf'
 import type { Presidente } from '../types'
 import Button from '../components/ui/Button'
 import ExportMenu from '../components/ui/ExportMenu'
@@ -116,8 +115,9 @@ export default function Presidentes() {
     toast.success('Exportado!', `${filtered.length} presidente(s) no arquivo CSV.`)
   }
 
-  const handleExportarPdf = () => {
-    exportToPdf({
+  const handleExportarPdf = async () => {
+    const { exportToPdf } = await import('../utils/exportPdfLoader')
+    await exportToPdf({
       title:    'Lista de Presidentes',
       subtitle: `${filtered.length} presidente(s) · Laço Favela`,
       filename: 'presidentes',
@@ -349,8 +349,9 @@ export default function Presidentes() {
                 exportToCsv('presidente', [{ Nome: viewPres.name, Setor: viewPres.setor, Score: viewPres.score, Cotas: viewPres.cotas, Status: viewPres.status }])
                 toast.success('Exportado!'); setViewPres(null)
               }}
-              onExportPdf={() => {
-                exportToPdf({
+              onExportPdf={async () => {
+                const { exportToPdf } = await import('../utils/exportPdfLoader')
+                await exportToPdf({
                   title: `Presidente — ${viewPres.name}`,
                   subtitle: viewPres.setor,
                   filename: `presidente_${viewPres.name.replace(/\s/g, '_')}`,

@@ -8,7 +8,6 @@ import { MOCK_PARTICIPACOES_MES, MOCK_DISTRIBUICAO_PERFIL } from '../data/mockDa
 import { useApp } from '../context/AppContext'
 import { useToast } from '../context/ToastContext'
 import { exportToCsv } from '../utils/exportCsv'
-import { exportToPdf } from '../utils/exportPdf'
 import StatCard from '../components/ui/StatCard'
 import Card from '../components/ui/Card'
 import Button from '../components/ui/Button'
@@ -84,8 +83,9 @@ export default function Dashboard() {
     toast.success('Exportado com sucesso!', 'Arquivo CSV gerado.')
   }
 
-  const handleExportarPdf = () => {
-    exportToPdf({
+  const handleExportarPdf = async () => {
+    const { exportToPdf } = await import('../utils/exportPdfLoader')
+    await exportToPdf({
       title:    'Dashboard — Resumo do Ciclo',
       subtitle: cicloAtivo ? `${cicloAtivo.nome} · ${cicloAtivo.periodo}` : 'Visão geral',
       filename: 'dashboard_ciclo',

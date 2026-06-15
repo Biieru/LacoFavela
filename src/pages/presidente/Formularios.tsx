@@ -2,7 +2,6 @@ import { Eye, Edit2, FileText } from 'lucide-react'
 import { useApp } from '../../context/AppContext'
 import { useToast } from '../../context/ToastContext'
 import { exportToCsv } from '../../utils/exportCsv'
-import { exportToPdf } from '../../utils/exportPdf'
 import Badge from '../../components/ui/Badge'
 import ExportMenu from '../../components/ui/ExportMenu'
 import clsx from 'clsx'
@@ -23,8 +22,9 @@ export default function PresidenteFormularios() {
     toast.success('Download CSV iniciado!', titulo)
   }
 
-  const handleDownloadPdf = (titulo: string, status: string, respostas: number) => {
-    exportToPdf({
+  const handleDownloadPdf = async (titulo: string, status: string, respostas: number) => {
+    const { exportToPdf } = await import('../../utils/exportPdfLoader')
+    await exportToPdf({
       title:    titulo,
       subtitle: `Status: ${status} · ${respostas} resposta(s) · Laço Favela`,
       filename: `formulario_${titulo.replace(/\s/g, '_')}`,

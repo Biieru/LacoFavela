@@ -1,6 +1,5 @@
 import { Trophy, TrendingUp } from 'lucide-react'
 import { RANKING_PRESIDENTES, MINHA_PONTUACAO } from '../../data/mockData'
-import { exportToPdf } from '../../utils/exportPdf'
 import { useToast } from '../../context/ToastContext'
 import Card from '../../components/ui/Card'
 import ExportMenu from '../../components/ui/ExportMenu'
@@ -26,8 +25,9 @@ export default function RankingPresidente() {
     toast.success('Exportado!', 'Ranking exportado em CSV.')
   }
 
-  const handleExportarPdf = () => {
-    exportToPdf({
+  const handleExportarPdf = async () => {
+    const { exportToPdf } = await import('../../utils/exportPdfLoader')
+    await exportToPdf({
       title:    'Ranking de Presidentes',
       subtitle: `${RANKING_PRESIDENTES.length} presidente(s) classificados · Laço Favela`,
       filename: 'ranking_presidentes',

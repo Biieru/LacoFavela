@@ -3,7 +3,6 @@ import {
   PieChart, Pie, Cell, ResponsiveContainer, Tooltip,
 } from 'recharts'
 import { PRESIDENTE_STATS, HISTORICO_COTAS, METAS_RECOMPENSAS } from '../../data/mockData'
-import { exportToPdf } from '../../utils/exportPdf'
 import { exportToCsv } from '../../utils/exportCsv'
 import { useToast } from '../../context/ToastContext'
 import Card from '../../components/ui/Card'
@@ -36,8 +35,9 @@ export default function MeuIndicador() {
     toast.success('Exportado!', 'Histórico de cotas em CSV.')
   }
 
-  const handleExportarPdf = () => {
-    exportToPdf({
+  const handleExportarPdf = async () => {
+    const { exportToPdf } = await import('../../utils/exportPdfLoader')
+    await exportToPdf({
       title:    'Meu Indicador de Desempenho',
       subtitle: `${new Date().toLocaleDateString('pt-BR', { month: 'long', year: 'numeric' })} · Laço Favela`,
       filename: 'meu_indicador',

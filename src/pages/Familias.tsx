@@ -4,7 +4,6 @@ import { useNavigate } from 'react-router-dom'
 import { useApp } from '../context/AppContext'
 import { useToast } from '../context/ToastContext'
 import { exportToCsv } from '../utils/exportCsv'
-import { exportToPdf } from '../utils/exportPdf'
 import type { Familia } from '../types'
 import Button from '../components/ui/Button'
 import ExportMenu from '../components/ui/ExportMenu'
@@ -101,8 +100,9 @@ export default function Familias() {
     toast.success('Exportado!', `${filtered.length} família(s) no arquivo CSV.`)
   }
 
-  const handleExportarPdf = () => {
-    exportToPdf({
+  const handleExportarPdf = async () => {
+    const { exportToPdf } = await import('../utils/exportPdfLoader')
+    await exportToPdf({
       title:    'Lista de Famílias',
       subtitle: `${filtered.length} família(s) cadastrada(s) · Laço Favela`,
       filename: 'familias',

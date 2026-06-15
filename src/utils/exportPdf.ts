@@ -25,11 +25,9 @@ export function exportToPdf(opts: PdfOptions) {
   const doc  = new jsPDF({ orientation: 'portrait', unit: 'mm', format: 'a4' })
   const pw   = doc.internal.pageSize.getWidth()
 
-  // ── Header band ──────────────────────────────────────────────
   doc.setFillColor(...NAVY)
   doc.rect(0, 0, pw, 28, 'F')
 
-  // Logo badge "LAÇO"
   doc.setFillColor(...GOLD)
   doc.roundedRect(12, 7, 14, 14, 3, 3, 'F')
   doc.setFont('helvetica', 'bold')
@@ -37,7 +35,6 @@ export function exportToPdf(opts: PdfOptions) {
   doc.setTextColor(...NAVY)
   doc.text('LAÇO', 19, 16, { align: 'center' })
 
-  // Platform name
   doc.setFont('helvetica', 'bold')
   doc.setFontSize(11)
   doc.setTextColor(...WHITE)
@@ -47,13 +44,11 @@ export function exportToPdf(opts: PdfOptions) {
   doc.setTextColor(200, 210, 230)
   doc.text('Família', 30, 18)
 
-  // Date top-right
   const now = new Date().toLocaleDateString('pt-BR', { day: '2-digit', month: 'long', year: 'numeric' })
   doc.setFontSize(7)
   doc.setTextColor(180, 200, 230)
   doc.text(now, pw - 12, 14, { align: 'right' })
 
-  // ── Title block ───────────────────────────────────────────────
   doc.setFont('helvetica', 'bold')
   doc.setFontSize(16)
   doc.setTextColor(...NAVY)
@@ -68,7 +63,6 @@ export function exportToPdf(opts: PdfOptions) {
 
   const startY = opts.subtitle ? 54 : 48
 
-  // ── Table ─────────────────────────────────────────────────────
   autoTable(doc, {
     startY,
     margin: { left: 12, right: 12 },
@@ -97,7 +91,6 @@ export function exportToPdf(opts: PdfOptions) {
     showHead: 'everyPage',
   })
 
-  // ── Footer ────────────────────────────────────────────────────
   const pageCount = (doc as any).internal.getNumberOfPages()
   for (let i = 1; i <= pageCount; i++) {
     doc.setPage(i)

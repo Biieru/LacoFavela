@@ -3,7 +3,6 @@ import { Plus, RefreshCw, WifiOff, FileCheck, FileX } from 'lucide-react'
 import { PRESIDENTE_VISITAS } from '../../data/mockData'
 import { useToast } from '../../context/ToastContext'
 import { exportToCsv } from '../../utils/exportCsv'
-import { exportToPdf } from '../../utils/exportPdf'
 import Badge from '../../components/ui/Badge'
 import Button from '../../components/ui/Button'
 import Card from '../../components/ui/Card'
@@ -71,8 +70,9 @@ export default function Registros() {
     toast.success('Exportado!', `${visitas.length} visita(s) exportadas.`)
   }
 
-  const handleExportarPdf = () => {
-    exportToPdf({
+  const handleExportarPdf = async () => {
+    const { exportToPdf } = await import('../../utils/exportPdfLoader')
+    await exportToPdf({
       title:    'Registros de Visitas',
       subtitle: `${visitas.length} visita(s) · ${mesAtual} · Laço Favela`,
       filename: 'registros_visitas',

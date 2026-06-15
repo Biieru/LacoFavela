@@ -27,8 +27,14 @@ const AuthContext = createContext<AuthContextValue | null>(null)
 
 export function AuthProvider({ children }: { children: ReactNode }) {
   const [user, setUser] = useState<User | null>(() => {
-    const stored = localStorage.getItem('fc_user')
-    return stored ? JSON.parse(stored) : null
+    try {
+      const stored = localStorage.getItem('fc_user')
+      if (!stored) return null
+      return JSON.parse(stored) as User
+    } catch {
+      localStorage.removeItem('fc_user')
+      return null
+    }
   })
 
   const login = useCallback(async (username: string, password: string) => {

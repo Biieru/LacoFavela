@@ -4,7 +4,7 @@ import clsx from 'clsx'
 
 interface ExportMenuProps {
   onExportCsv?: () => void
-  onExportPdf?: () => void
+  onExportPdf?: () => void | Promise<void>
   label?:       string
   size?:        'sm' | 'md'
   variant?:     'primary' | 'secondary' | 'outline'
@@ -73,7 +73,7 @@ export default function ExportMenu({
 
           {onExportPdf && (
             <button
-              onClick={() => { onExportPdf(); setOpen(false) }}
+              onClick={() => { void Promise.resolve(onExportPdf()).then(() => setOpen(false)) }}
               className="w-full flex items-center gap-3 px-4 py-2.5 text-sm text-gray-700 hover:bg-red-50 transition-colors text-left"
             >
               <FileText size={15} className="text-red-500 shrink-0" />

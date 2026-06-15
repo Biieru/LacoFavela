@@ -3,7 +3,6 @@ import { CheckCheck, MessageSquare, AlertTriangle, ThumbsUp, Lightbulb, Download
 import { useApp } from '../context/AppContext'
 import { useToast } from '../context/ToastContext'
 import { exportToCsv } from '../utils/exportCsv'
-import { exportToPdf } from '../utils/exportPdf'
 import type { Feedback } from '../types'
 import Button from '../components/ui/Button'
 import ExportMenu from '../components/ui/ExportMenu'
@@ -58,8 +57,9 @@ export default function Feedbacks() {
     toast.success('Exportado!', `${filtered.length} feedback(s) exportados.`)
   }
 
-  const handleExportarPdf = () => {
-    exportToPdf({
+  const handleExportarPdf = async () => {
+    const { exportToPdf } = await import('../utils/exportPdfLoader')
+    await exportToPdf({
       title:    'Feedbacks da Comunidade',
       subtitle: `${filtered.length} feedback(s) exportados · Laço Favela`,
       filename: 'feedbacks',
