@@ -89,7 +89,7 @@ export default function PresidenteFamilias() {
   const handleExportarPdf = () => {
     exportToPdf({
       title:    'Minhas Famílias',
-      subtitle: `${filtered.length} família(s) cadastrada(s) · Favela Club`,
+      subtitle: `${filtered.length} família(s) cadastrada(s) · Laço Favela`,
       filename: 'minhas_familias',
       columns: [
         { header: 'Família',   key: 'Família' },

@@ -26,7 +26,7 @@ export default function PresidenteFormularios() {
   const handleDownloadPdf = (titulo: string, status: string, respostas: number) => {
     exportToPdf({
       title:    titulo,
-      subtitle: `Status: ${status} · ${respostas} resposta(s) · Favela Club`,
+      subtitle: `Status: ${status} · ${respostas} resposta(s) · Laço Favela`,
       filename: `formulario_${titulo.replace(/\s/g, '_')}`,
       columns: [
         { header: 'Campo',  key: 'Campo' },

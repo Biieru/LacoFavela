@@ -60,7 +60,7 @@ export default function Header({ onMenuClick }: HeaderProps) {
   const [searchOpen, setSearchOpen]    = useState(false)
   const bellRef = useRef<HTMLButtonElement>(null)
 
-  const title    = ROUTE_TITLES[location.pathname] || 'Favela Club'
+  const title    = ROUTE_TITLES[location.pathname] || 'Laço Favela'
   const subtitle = ROUTE_SUBS[location.pathname]
 
   return (

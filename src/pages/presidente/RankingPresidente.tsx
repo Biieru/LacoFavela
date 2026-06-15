@@ -29,7 +29,7 @@ export default function RankingPresidente() {
   const handleExportarPdf = () => {
     exportToPdf({
       title:    'Ranking de Presidentes',
-      subtitle: `${RANKING_PRESIDENTES.length} presidente(s) classificados · Favela Club`,
+      subtitle: `${RANKING_PRESIDENTES.length} presidente(s) classificados · Laço Favela`,
       filename: 'ranking_presidentes',
       columns: [
         { header: 'Pos.',      key: 'Posição',            width: 14 },

@@ -66,7 +66,7 @@ export default function SerPresidente() {
           <div>
             <h2 className="text-xl font-black text-white">Seja um Líder Comunitário!</h2>
             <p className="text-white/60 text-sm mt-0.5">
-              Represente sua comunidade e ajude a transformar a Favela Club. Sua candidatura é avaliada pela equipe e pela própria comunidade.
+              Represente sua comunidade e ajude a transformar o Laço Favela. Sua candidatura é avaliada pela equipe e pela própria comunidade.
             </p>
           </div>
         </div>

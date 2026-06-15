@@ -72,7 +72,7 @@ export default function Aprovados() {
   const handleExportarPdf = () => {
     exportToPdf({
       title:    'Famílias Aprovadas',
-      subtitle: `Ciclo 3 · ${filtered.length} registro(s) · Favela Club`,
+      subtitle: `Ciclo 3 · ${filtered.length} registro(s) · Laço Favela`,
       filename: 'aprovados',
       columns: [
         { header: 'Família',    key: 'Família' },

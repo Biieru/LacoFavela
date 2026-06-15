@@ -104,7 +104,7 @@ export default function Familias() {
   const handleExportarPdf = () => {
     exportToPdf({
       title:    'Lista de Famílias',
-      subtitle: `${filtered.length} família(s) cadastrada(s) · Favela Club`,
+      subtitle: `${filtered.length} família(s) cadastrada(s) · Laço Favela`,
       filename: 'familias',
       columns: [
         { header: 'Família',      key: 'Família' },

@@ -59,7 +59,7 @@ export default function Historico() {
   const handleExportarHistoricoPdf = () => {
     exportToPdf({
       title:    'Histórico de Eventos',
-      subtitle: `${historico.length} evento(s) · Favela Club`,
+      subtitle: `${historico.length} evento(s) · Laço Favela`,
       filename: 'historico',
       columns: [
         { header: 'Data',       key: 'Data',       width: 32 },
@@ -79,7 +79,7 @@ export default function Historico() {
   const handleExportarTodosDadosPdf = () => {
     exportToPdf({
       title:    'Resumo por Ciclo',
-      subtitle: `${cicloStats.length} ciclo(s) · Favela Club`,
+      subtitle: `${cicloStats.length} ciclo(s) · Laço Favela`,
       filename: 'ciclos_resumo',
       columns: [
         { header: 'Ciclo',                 key: 'Ciclo',                  width: 20 },

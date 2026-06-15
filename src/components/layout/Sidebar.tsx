@@ -114,12 +114,12 @@ export default function Sidebar({ open, onClose }: SidebarProps) {
       )}>
         {/* Logo */}
         <div className="flex items-center gap-3 px-5 py-5 border-b border-white/10">
-          <div className="w-10 h-10 rounded-xl bg-gold flex items-center justify-center font-black text-navy text-xs shrink-0">
-            FC
+          <div className="w-10 h-10 rounded-xl bg-gold flex items-center justify-center font-black text-navy text-[9px] leading-none shrink-0">
+            LAÇO
           </div>
           <div className="flex-1 min-w-0">
-            <p className="font-bold text-white text-sm leading-tight">FAVELA CLUB</p>
-            <p className="text-white/50 text-[10px] uppercase tracking-widest">Platform</p>
+            <p className="font-bold text-white text-sm leading-tight">Laço Favela</p>
+            <p className="text-white/50 text-[10px] uppercase tracking-widest">Família</p>
           </div>
           <button
             onClick={onClose}

@@ -29,23 +29,23 @@ export function exportToPdf(opts: PdfOptions) {
   doc.setFillColor(...NAVY)
   doc.rect(0, 0, pw, 28, 'F')
 
-  // Logo badge "FC"
+  // Logo badge "LAÇO"
   doc.setFillColor(...GOLD)
   doc.roundedRect(12, 7, 14, 14, 3, 3, 'F')
   doc.setFont('helvetica', 'bold')
-  doc.setFontSize(9)
+  doc.setFontSize(7)
   doc.setTextColor(...NAVY)
-  doc.text('FC', 19, 16, { align: 'center' })
+  doc.text('LAÇO', 19, 16, { align: 'center' })
 
   // Platform name
   doc.setFont('helvetica', 'bold')
   doc.setFontSize(11)
   doc.setTextColor(...WHITE)
-  doc.text('FAVELA CLUB', 30, 13)
+  doc.text('Laço Favela', 30, 13)
   doc.setFont('helvetica', 'normal')
   doc.setFontSize(7)
   doc.setTextColor(200, 210, 230)
-  doc.text('Platform', 30, 18)
+  doc.text('Família', 30, 18)
 
   // Date top-right
   const now = new Date().toLocaleDateString('pt-BR', { day: '2-digit', month: 'long', year: 'numeric' })
@@ -108,7 +108,7 @@ export function exportToPdf(opts: PdfOptions) {
     doc.setFont('helvetica', 'normal')
     doc.setFontSize(7)
     doc.setTextColor(...GRAY)
-    doc.text('Favela Club — Documento gerado automaticamente', 12, h - 6)
+    doc.text('Laço Favela — Documento gerado automaticamente', 12, h - 6)
     doc.text(`${i} / ${pageCount}`, pw - 12, h - 6, { align: 'right' })
   }
 

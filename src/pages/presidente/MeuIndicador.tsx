@@ -39,7 +39,7 @@ export default function MeuIndicador() {
   const handleExportarPdf = () => {
     exportToPdf({
       title:    'Meu Indicador de Desempenho',
-      subtitle: `${new Date().toLocaleDateString('pt-BR', { month: 'long', year: 'numeric' })} · Favela Club`,
+      subtitle: `${new Date().toLocaleDateString('pt-BR', { month: 'long', year: 'numeric' })} · Laço Favela`,
       filename: 'meu_indicador',
       columns: [
         { header: 'Mês',        key: 'Mês' },

@@ -1,4 +1,4 @@
-# FavelaClub — LAGO Platform
+# Laço Favela
 
 Sistema de gestão comunitária para administrar presidentes, famílias e ciclos de benefícios.
 
@@ -15,8 +15,8 @@ Sistema de gestão comunitária para administrar presidentes, famílias e ciclos
 | Usuário      | Senha    | Acesso                                              |
 |-------------|----------|-----------------------------------------------------|
 | `admin`     | `852456` | Total — todas as páginas                            |
-| `presidente`| `852456` | Dashboard, Formulários, Famílias, Aprovados, Histórico |
-| `morador`   | `852456` | Dashboard, Aprovados                                |
+| `presidente`| `852456` | Home, Famílias, Formulários, Registros, Indicadores |
+| `morador`   | `852456` | Início, Notificações, Acompanhamento, Ranking       |
 
 ## Desenvolvimento local
 
@@ -43,7 +43,7 @@ npm run preview
 
 ## Páginas
 
-- **Dashboard** — métricas do ciclo, gráficos e rankings
+- **Dashboard / Home** — métricas do ciclo, gráficos e rankings
 - **Formulários** — criação e gestão de formulários
 - **Presidentes** — ranking, status e edição de cotas
 - **Famílias** — listagem, pontuação e pré-aprovação

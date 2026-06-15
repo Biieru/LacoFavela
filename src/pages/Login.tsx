@@ -45,12 +45,12 @@ export default function Login() {
 
         <div className="relative">
           <div className="flex items-center gap-3 mb-3">
-            <div className="w-12 h-12 rounded-2xl bg-gold flex items-center justify-center font-black text-navy text-xl">
-              FC
+            <div className="w-12 h-12 rounded-2xl bg-gold flex items-center justify-center font-black text-navy text-[11px] leading-none">
+              LAÇO
             </div>
             <div>
-              <p className="font-black text-white text-xl tracking-tight">FAVELA CLUB</p>
-              <p className="text-white/50 text-xs uppercase tracking-widest">Platform</p>
+              <p className="font-black text-white text-xl tracking-tight">Laço Favela</p>
+              <p className="text-white/50 text-xs uppercase tracking-widest">Família</p>
             </div>
           </div>
         </div>
@@ -82,7 +82,7 @@ export default function Login() {
 
         <div className="relative">
           <p className="text-white/30 text-xs">
-            © 2025 Favela Club · Todos os direitos reservados
+            © 2025 Laço Favela · Todos os direitos reservados
           </p>
         </div>
       </div>
@@ -92,10 +92,10 @@ export default function Login() {
         <div className="w-full max-w-md">
           {/* Mobile logo */}
           <div className="lg:hidden flex items-center gap-3 mb-8">
-            <div className="w-10 h-10 rounded-xl bg-navy flex items-center justify-center font-black text-gold text-sm">
-              FC
+            <div className="w-10 h-10 rounded-xl bg-navy flex items-center justify-center font-black text-gold text-[9px] leading-none">
+              LAÇO
             </div>
-            <p className="font-black text-navy text-xl">FAVELA CLUB</p>
+            <p className="font-black text-navy text-xl">Laço Favela</p>
           </div>
 
           <div className="bg-white rounded-3xl shadow-card border border-gray-100 p-8">

@@ -74,7 +74,7 @@ export default function Registros() {
   const handleExportarPdf = () => {
     exportToPdf({
       title:    'Registros de Visitas',
-      subtitle: `${visitas.length} visita(s) · ${mesAtual} · Favela Club`,
+      subtitle: `${visitas.length} visita(s) · ${mesAtual} · Laço Favela`,
       filename: 'registros_visitas',
       columns: [
         { header: 'Família',    key: 'Família' },

@@ -61,7 +61,7 @@ export default function Feedbacks() {
   const handleExportarPdf = () => {
     exportToPdf({
       title:    'Feedbacks da Comunidade',
-      subtitle: `${filtered.length} feedback(s) exportados · Favela Club`,
+      subtitle: `${filtered.length} feedback(s) exportados · Laço Favela`,
       filename: 'feedbacks',
       columns: [
         { header: 'Tipo',        key: 'Tipo',        width: 20 },

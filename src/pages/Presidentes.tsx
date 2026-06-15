@@ -119,7 +119,7 @@ export default function Presidentes() {
   const handleExportarPdf = () => {
     exportToPdf({
       title:    'Lista de Presidentes',
-      subtitle: `${filtered.length} presidente(s) · Favela Club`,
+      subtitle: `${filtered.length} presidente(s) · Laço Favela`,
       filename: 'presidentes',
       columns: [
         { header: 'Nome',    key: 'Nome' },
